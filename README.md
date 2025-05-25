@@ -1,6 +1,5 @@
-# Project Title (e.g., Ktor Android Sample App)
+# Ktor-Client  ( Sample App)
 
-A brief one-sentence description of what your project does.
 
 ## Overview
 
@@ -13,7 +12,6 @@ This Android application demonstrates how to use Ktor for making network request
 *   Fetches data from a remote API using Ktor.
 *   Parses JSON responses using Kotlinx Serialization.
 *   Displays data in a Jetpack Compose UI.
-*   (Add more features specific to your app, e.g., "User authentication," "Displays a list of items," "Allows users to post data," etc.)
 
 ## Technologies Used
 
