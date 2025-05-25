@@ -1,6 +1,7 @@
 package com.yasir.ktor
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -37,6 +38,15 @@ class MainActivity : ComponentActivity() {
             }
             LaunchedEffect(Unit) {
                 posts = KtorClient.getPosts()
+                val postPost = KtorClient.postPost(
+                    Posts(
+                        body = "Test Api...",
+                        id = 1,
+                        title = "Test",
+                        userId = 12
+                    )
+                )
+                Log.d("KtorTestResponse", "onCreate: ${postPost}")
             }
             KtorTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
