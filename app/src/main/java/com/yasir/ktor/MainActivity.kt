@@ -22,31 +22,24 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.yasir.ktor.client.KtorClient
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.yasir.ktor.data.client.KtorClient
 import com.yasir.ktor.model.Posts
 import com.yasir.ktor.ui.theme.KtorTheme
+import com.yasir.ktor.view.viewmodel.PostsViewModel
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            var posts by remember {
-                mutableStateOf(emptyList<Posts>())
-            }
+            val viewModel = getViewModel<PostsViewModel>()
+            val posts by viewModel.posts.collectAsStateWithLifecycle()
+            // Trigger fetching posts once
             LaunchedEffect(Unit) {
-                posts = KtorClient.getPosts()
-                val postPost = KtorClient.postPost(
-                    Posts(
-                        body = "Test Api...",
-                        id = 1,
-                        title = "Test",
-                        userId = 12
-                    )
-                )
-                Log.d("KtorTestResponse", "onCreate: ${postPost}")
+                viewModel.fetchPosts()
             }
             KtorTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->

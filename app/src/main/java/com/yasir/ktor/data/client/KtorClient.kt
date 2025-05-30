@@ -1,4 +1,4 @@
-package com.yasir.ktor.client
+package com.yasir.ktor.data.client
 
 import com.yasir.ktor.model.Posts
 import io.ktor.client.HttpClient
@@ -26,7 +26,7 @@ class KtorClient {
 
     //https://jsonplaceholder.typicode.com/posts
     companion object {
-        private fun getClient(): HttpClient = HttpClient {
+        internal fun getClient(): HttpClient = HttpClient {
             install(ContentNegotiation) {
                 json(json = Json {
                     ignoreUnknownKeys = true
@@ -53,21 +53,9 @@ class KtorClient {
                 level = LogLevel.ALL
             }
         }
-        suspend fun getPosts():List<Posts>{
-            return getClient().get("/posts")
-                .body<List<Posts>>()
-        }
 
-        suspend fun postPost(post: Posts):Posts{
-            return getClient().post{
-                url {
-                    path("/posts")
-                }
-                contentType(ContentType.Application.Json)
-                setBody(post)
-            }.body<Posts>()
 
-        }
+
 
     }
 }

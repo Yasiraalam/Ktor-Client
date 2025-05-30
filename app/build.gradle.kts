@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -77,4 +78,21 @@ dependencies {
     implementation(libs.kotlinx.serialization)
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.slf4j)
+
+    //Koin and viewmodel
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.koin.android)
+
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.koin.core)
+    implementation(libs.koin.compose)
+    implementation(libs.koin.coroutines)
+    implementation(libs.koin.compose.viewmodel)
+    implementation(libs.lifecycle.viewmodel.compose)
+    // Lifecycle ViewModel + StateFlow
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    // Added
+    implementation(libs.koin.annotation)
+    ksp(libs.koin.ksp.compiler)
 }
