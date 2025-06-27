@@ -5,7 +5,6 @@
 
 This Android application demonstrates how to use Ktor for making network requests and Kotlinx Serialization for parsing JSON responses in a Jetpack Compose-based UI.
 
-*(Expand here: What is the main purpose of this app? What problem does it solve or what does it showcase? What are the key features?)*
 
 ## Features
 
